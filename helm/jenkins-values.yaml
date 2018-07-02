@@ -11,7 +11,7 @@
 Master:
   Name: jenkins-master
   Image: "jenkins/jenkins"
-  ImageTag: "2.128"
+  ImageTag: "2.129"
   ImagePullPolicy: "Always"
   Component: "jenkins-master"
   UseSecurity: true
@@ -22,7 +22,7 @@ Master:
   ServicePort: 8080
   # For minikube, set this to NodePort, elsewhere use LoadBalancer
   # <to set explicitly, choose port between 30000-32767>
-  ServiceType: NodePort
+  ServiceType: LoadBalancer
   NodePort: 32000
   ServiceAnnotations: {}
   ContainerPort: 8080
@@ -44,6 +44,7 @@ Master:
     - ghprb:1.42.0
     - blueocean:1.6.1
     - pipeline-github-lib:1.0
+    - anchore-container-scanner:1.0.15
   # Used to approve a list of groovy functions in pipelines used the script-security plugin. Can be viewed under /scriptApproval
   ScriptApproval:
     - "method groovy.json.JsonSlurperClassic parseText java.lang.String"
